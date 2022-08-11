@@ -4,7 +4,6 @@ import json
 import logging
 import os
 import tempfile
-import sys
 
 from importlib import import_module
 
