@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 import fcntl
 import hashlib
 import json
@@ -13,8 +11,6 @@ from importlib import import_module
 from django.conf import settings
 
 from django_crontab.app_settings import Settings
-
-string_type = basestring if sys.version_info[0] == 2 else str  # flake8: noqa
 
 logger = logging.getLogger(__name__)
 
@@ -75,7 +71,7 @@ class Crontab(object):
         # take all jobs specified in settings
         for job in self.settings.CRONJOBS:
             # differ format and find job's suffix
-            if len(job) > 2 and isinstance(job[2], string_type):
+            if len(job) > 2 and isinstance(job[2], str):
                 # format 1 job
                 job_suffix = job[2]
             elif len(job) > 4:
@@ -149,7 +145,7 @@ class Crontab(object):
         # obtain the job tuple from the hash
         job = self.__get_job_by_hash(job_hash)
         job_name = job[1]
-        job_args = job[2] if len(job) > 2 and not isinstance(job[2], string_type) else []
+        job_args = job[2] if len(job) > 2 and not isinstance(job[2], str) else []
         job_kwargs = job[3] if len(job) > 3 else {}
 
         lock_file_name = None

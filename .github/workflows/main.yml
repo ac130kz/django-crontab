@@ -12,8 +12,8 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        python-version: [3.8, 3.9, 3.10]
-        django-version: [3.2.15, 4.1]
+        python-version: [3.8, 3.9, "3.10"]
+        django-version: ["3.2.15", 4.1]
 
     steps:
     - uses: actions/checkout@v2
@@ -28,7 +28,7 @@ jobs:
         pip install -e .
     - name: Run Style Guide
       run: |
-        flake8 django_crontab --ignore=E501
+        flake8 django_crontab --ignore=E501,E722,W391
     - name: Run Tests
       run: |
         DJANGO_SETTINGS_MODULE=tests.settings nosetests --with-coverage --cover-package=django_crontab
