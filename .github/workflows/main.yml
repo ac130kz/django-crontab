@@ -1,8 +1,5 @@
 name: Django Crontab Tests
 
-env: 
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
 on:
   push:
     branches: [ master ]
@@ -35,6 +32,8 @@ jobs:
     - name: Run Tests
       run: |
         DJANGO_SETTINGS_MODULE=tests.settings nosetests --with-coverage --cover-package=django_crontab
-    - name: Run Post-test Coverage
-      run: |
-        coveralls
+    - name: Coveralls
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+
