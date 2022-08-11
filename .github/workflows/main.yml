@@ -32,8 +32,9 @@ jobs:
     - name: Run Tests
       run: |
         DJANGO_SETTINGS_MODULE=tests.settings nosetests --with-coverage --cover-package=django_crontab
-    - name: Coveralls
-      uses: coverallsapp/github-action@master
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+#    - name: Run Post-test Coverage
+#      run: |
+#        coveralls
+#      with:
+#        github-token: ${{ secrets.GITHUB_TOKEN }}
 
